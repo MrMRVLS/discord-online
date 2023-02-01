@@ -1,71 +1,58 @@
-# Online-Forever
-Make Your Discord Account 24/7 Online!
-
-----
-
+# Discord Online Forever 🦄😏
 A code written in Python that helps you to keep your account 24/7 online.
 
-#### Please check out this if you want to add multiple tokens with just one file: [phantom.sellix.io/product/635d5774050c1](https://phantom.sellix.io/product/635d5774050c1)
+## Requirements 🧰
+- [Python 3+](https://www.python.org/)
+- [Discord](https://discord.com/) account. 
 
----
+## Installation 🐍
 
-The [main.py](https://github.com/SealedSaucer/Online-Forever/blob/main/main.py) is the main file. [keep_alive.py](https://github.com/SealedSaucer/Online-Forever/blob/main/keep_alive.py) prevents your repl from going to sleep. If you have a replit hacker plan or want to run the script locally, then you can delete [this file](https://github.com/SealedSaucer/Online-Forever/blob/main/keep_alive.py) and paste this code inside the [main.py](https://github.com/SealedSaucer/Online-Forever/blob/main/main.py) file: 
-
-</br>
-
-```py
-import json
-import time
-import websocket
-import requests
-import os
-
-status = "online"
-
-headers = {"Authorization": os.getenv("TOKEN"), "Content-Type": "application/json"}
-userinfo = requests.get('https://discordapp.com/api/v9/users/@me', headers=headers).json()
-username = userinfo["username"]
-discriminator = userinfo["discriminator"]
-userid = userinfo["id"]
-
-def onliner(token, status):
-    ws = websocket.WebSocket()
-    ws.connect('wss://gateway.discord.gg/?v=9&encoding=json')
-    start = json.loads(ws.recv())
-    heartbeat = start['d']['heartbeat_interval']
-    auth = {"op": 2,"d": {"token": token,"properties": {"$os": "Windows 10","$browser": "Google Chrome","$device": "Windows"},"presence": {"status": status,"afk": False}},"s": None,"t": None}
-    ws.send(json.dumps(auth))
-    online = {"op":1,"d":"None"}
-    time.sleep(heartbeat / 1000)
-    ws.send(json.dumps(online))
-
-def run_onliner():
-  print(f"Logged in as {username}#{discriminator} ({userid}).")
-  while True:
-    onliner(os.getenv("TOKEN"), status)
-    time.sleep(30)
-
-run_onliner()
+```
+> download a copy of this repo
+> navigate to the extracted folder
 ```
 
-This code is from [this tutorial](https://www.youtube.com/watch?v=-soq0pOqP_4). If you have any issues or doubts regarding this, feel free to [contact me](https://dsc.gg/phantom).
+Install all the necessary Python packages to run this programme using the requirements.txt (`sudo` as neccessary):
+
+```
+$ pip install -r requirements.txt
+```
 
 ---
 
-> **Warning**
+## Getting Started 🥣
+Get your discord token and add it to the `token` in `config.py` file.  (_paste inside the quotations._) If you don't know how to get your discord token, just google. 😏
+
+```py
+token = "xxxxxxxxxxxxxxxxxxxxxxxxx"
+```
+---
+### 📍 DO NOT GIVE YOUR TOKEN TO OTHERS !!!
+#### _Giving your token to someone else will give them the ability to log into your account without the password or 2FA._
+> ❗ **Warning**
 > : Self-bots are discouraged by Discord and is against Discord's ToS. You might get banned for this if not used properly.
 
-> **Note**
+> 📝 **Note**
 > : Discord's Terms of Service: [discord.com/terms](https://discord.com/terms)
 
-#### This repository is in no way affiliated with, authorized, maintained, sponsored or endorsed by Discord Inc. (discord.com) or any of its affiliates or subsidiaries.
+> This repository is in no way affiliated with, authorized, maintained, sponsored or endorsed by [Discord Inc.](https://discord.com/) or any of its affiliates or subsidiaries.
+
+
+
 
 ---
+## Usage 🍕
+### Then run the code: WoWoWo!!! 🍻
+```
+ $ python online.py
+```
+If you did all the steps correctly, you should see the following message on the console.
 
-### DO NOT GIVE YOUR TOKEN TO OTHERS!
-
-#### Giving your token to someone else will give them the ability to log into your account without the password or 2FA.
-
+````
+Logged in as <you user name>
+````
 ---
 
-> ⭐ Feel free to star the repository if this helped you! ;)
+ - _**Don't foregt to 🌟 star the repository if this helped you!**_ 💖🤗
+
+ - _**Do you have an improvement? Feel free to contribute by a pull request.**_ 🤍
